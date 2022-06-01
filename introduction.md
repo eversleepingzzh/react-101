@@ -84,6 +84,29 @@ function Counter() {
     return <div onClick={plus}>{count}</div>
 }
 ```
+# Life cycle
+```
+class BlogView extends React.Component { 
+    componentDidMount() { 
+        fetchBlog(this.props.id); 
+    }
+    
+    componentDidUpdate(prevProps) { 
+        if (prevProps.id !== this.props.id) { 
+        fetchBlog(this.props.id)
+    }
+```
+```
+function BlogView({ id }) { 
+    useEffect(() => { 
+        console.log('equal componentDidMount + componentDidUpdate');
+        fetchBlog(id); 
+    }
+    return () => { // componentWillUnmount
+     console.log('equal componentWillUnmount'); 
+     }
+}, [id]); 
+```
 # Redux
 
 ### use redux with high order component
